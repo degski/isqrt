@@ -7,3 +7,5 @@
 /x64/Debug
 /x64/Release
 *.vcxproj.user
+/.vs/isqrt/v16
+/isqrt.vcxproj.filters
