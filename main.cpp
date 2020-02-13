@@ -52,7 +52,7 @@ inline auto const seed = [] ( ) {
     return ( static_cast<std::size_t> ( rdev ( ) ) << 32 ) | static_cast<std::size_t> ( rdev ( ) );
 }( );
 
-inline sax::uniform_int_distribution<int64_t> dis_test{ 3, 1'000'000 };
+inline sax::uniform_int_distribution<int64_t> dis_test{ 3, 1'000'000'000 };
 inline sax::uniform_int_distribution<std::size_t> dis_idx{ 0, size - 1 };
 
 [[maybe_unused]] bool test_speed_0 ( ) noexcept {
@@ -111,7 +111,7 @@ inline sax::uniform_int_distribution<std::size_t> dis_idx{ 0, size - 1 };
     for ( int64_t i = 0; i < size * size; ++i )
         data[ dis_idx ( rng ) ] += sax::isqrt_4 ( dis_test ( rng ) );
     uint64_t time = static_cast<uint64_t> ( t.get_elapsed_ns ( ) ) / ( size * size );
-    std::cout << "algo 3 " << std::setw ( 4 ) << time << std::setw ( 0 ) << " ns/calc     " << data[ dis_idx ( rng ) ] << nl;
+    std::cout << "algo 4 " << std::setw ( 4 ) << time << std::setw ( 0 ) << " ns/calc     " << data[ dis_idx ( rng ) ] << nl;
     return true;
 }
 
@@ -137,10 +137,10 @@ int main ( ) {
 
     auto algo = test_algorithm ( );
 
-    auto speed_3 = test_speed_3 ( );
-    auto speed_1 = test_speed_1 ( );
     auto speed_0 = test_speed_0 ( );
+    auto speed_1 = test_speed_1 ( );
     auto speed_2 = test_speed_2 ( );
+    auto speed_3 = test_speed_3 ( );
     auto speed_4 = test_speed_4 ( );
 
     std::cout << ( ( algo and speed_0 and speed_1 and speed_2 and speed_3 and speed_4 ) ? "success" : "failure" ) << nl;

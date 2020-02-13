@@ -137,56 +137,6 @@ namespace detail {
     }
 
 // by Mark Crowne
-[[nodiscard]] inline constexpr uint64_t isqrt_impl_5 ( uint64_t val ) NOEXCEPT {
-    uint64_t temp = 0, g = 0;
-    if ( val >= 0x4000'0000'0000'0000 ) {
-        g = 0x8000'0000;
-        val -= 0x4000'0000'0000'0000;
-    }
-    INNER_ISQRT ( 31 )
-    INNER_ISQRT ( 30 )
-    INNER_ISQRT ( 29 )
-    INNER_ISQRT ( 28 )
-
-    INNER_ISQRT ( 27 )
-    INNER_ISQRT ( 26 )
-    INNER_ISQRT ( 25 )
-    INNER_ISQRT ( 24 )
-
-    INNER_ISQRT ( 23 )
-    INNER_ISQRT ( 22 )
-    INNER_ISQRT ( 21 )
-    INNER_ISQRT ( 20 )
-
-    INNER_ISQRT ( 19 )
-    INNER_ISQRT ( 18 )
-    INNER_ISQRT ( 17 )
-    INNER_ISQRT ( 16 )
-
-    INNER_ISQRT ( 15 )
-    INNER_ISQRT ( 14 )
-    INNER_ISQRT ( 13 )
-    INNER_ISQRT ( 12 )
-
-    INNER_ISQRT ( 11 )
-    INNER_ISQRT ( 10 )
-    INNER_ISQRT ( 9 )
-    INNER_ISQRT ( 8 )
-
-    INNER_ISQRT ( 7 )
-    INNER_ISQRT ( 6 )
-    INNER_ISQRT ( 5 )
-    INNER_ISQRT ( 4 )
-
-    INNER_ISQRT ( 3 )
-    INNER_ISQRT ( 2 )
-
-    temp = g + g + 1;
-    if ( val >= temp )
-        g++;
-    return g;
-}
-// by Mark Crowne
 [[nodiscard]] inline constexpr uint64_t isqrt_impl_4 ( uint64_t val ) NOEXCEPT {
     uint64_t temp = 0, g = 0;
     if ( val >= 0x4000'0000'0000'0000 ) {
@@ -197,12 +147,11 @@ namespace detail {
     INNER_ISQRT ( 30 )
     INNER_ISQRT ( 29 )
     INNER_ISQRT ( 28 )
-
     INNER_ISQRT ( 27 )
     INNER_ISQRT ( 26 )
+
     INNER_ISQRT ( 25 )
     INNER_ISQRT ( 24 )
-
     INNER_ISQRT ( 23 )
     INNER_ISQRT ( 22 )
     INNER_ISQRT ( 21 )
@@ -212,12 +161,11 @@ namespace detail {
     INNER_ISQRT ( 18 )
     INNER_ISQRT ( 17 )
     INNER_ISQRT ( 16 )
-
     INNER_ISQRT ( 15 )
     INNER_ISQRT ( 14 )
+
     INNER_ISQRT ( 13 )
     INNER_ISQRT ( 12 )
-
     INNER_ISQRT ( 11 )
     INNER_ISQRT ( 10 )
     INNER_ISQRT ( 9 )
@@ -248,7 +196,6 @@ namespace detail {
     INNER_ISQRT ( 14 )
     INNER_ISQRT ( 13 )
     INNER_ISQRT ( 12 )
-
     INNER_ISQRT ( 11 )
     INNER_ISQRT ( 10 )
     INNER_ISQRT ( 9 )
