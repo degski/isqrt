@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/k_dimensional_tree/v16
+/_clang-format
+/x64/Debug
+/x64/Release
+*.vcxproj.user
