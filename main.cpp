@@ -115,6 +115,18 @@ inline sax::uniform_int_distribution<std::size_t> dis_idx{ 0, size - 1 };
     return true;
 }
 
+[[maybe_unused]] bool test_speed_5 ( ) noexcept {
+    std::array<int64_t, size> data = { };
+    sax::splitmix64 rng{ seed };
+    plf::nanotimer t;
+    t.start ( );
+    for ( int64_t i = 0; i < size * size; ++i )
+        data[ dis_idx ( rng ) ] += sax::isqrt_5 ( dis_test ( rng ) );
+    uint64_t time = static_cast<uint64_t> ( t.get_elapsed_ns ( ) ) / ( size * size );
+    std::cout << "algo 5 " << std::setw ( 4 ) << time << std::setw ( 0 ) << " ns/calc     " << data[ dis_idx ( rng ) ] << nl;
+    return true;
+}
+
 [[maybe_unused]] bool test_algorithm ( ) noexcept {
     sax::splitmix64 rng{ seed };
     sax::uniform_int_distribution<std::size_t> dis_idx{ 0, size - 1 };
@@ -125,13 +137,17 @@ inline sax::uniform_int_distribution<std::size_t> dis_idx{ 0, size - 1 };
         int64_t i2 = sax::isqrt_2 ( v );
         int64_t i3 = sax::isqrt_3 ( v );
         int64_t i4 = sax::isqrt_4 ( v );
+        int64_t i5 = sax::isqrt_5 ( v );
         // For debugging.
         // std::cout << std::setw ( 4 ) << i << ' ' << std::setw ( 2 ) << i1 << ' ' << i2 << ' ' << i3 << " == " << std::setw ( 0 )
         //          << ( i1 == i2 and i2 == i3 ? "" : " boo . . ." ) << nl;
-        assert ( i0 == i1 and i1 == i2 and i2 == i3 and i3 == i4 );
+        assert ( i0 == i1 and i1 == i2 and i2 == i3 and i3 == i4 and i4 == i5 );
     }
     return true;
 }
+
+// [[nodiscard]] int isqrt ( int i ) noexcept { return ( 0.485 + 0.485 * i ) * ( uint64_t{ 1 } << 10 ); } /// * ( uint64_t{ 1 } <<
+// 10 )
 
 int main ( ) {
 
@@ -142,8 +158,9 @@ int main ( ) {
     auto speed_2 = test_speed_2 ( );
     auto speed_3 = test_speed_3 ( );
     auto speed_4 = test_speed_4 ( );
+    auto speed_5 = test_speed_5 ( );
 
-    std::cout << ( ( algo and speed_0 and speed_1 and speed_2 and speed_3 and speed_4 ) ? "success" : "failure" ) << nl;
+    std::cout << ( ( algo and speed_0 and speed_1 and speed_2 and speed_3 and speed_4 and speed_5 ) ? "success" : "failure" ) << nl;
 
     return EXIT_SUCCESS;
 }
