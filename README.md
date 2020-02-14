@@ -1,9 +1,14 @@
 # isqrt
 
-Implement `integer isqrt(integer)`, the (a) fast(est) way.
+Implementing `integer isqrt ( integer )`, the fastest way:
 
-Algorithm 4 is by way the fastest, both with clang and vc.
 
-### IDEAS:
+    #include <cassert>
+    #include <cmath>
 
-### TODO:
+    // Integer square root.
+    template<typename SizeType>
+    [[nodiscard]] inline constexpr SizeType isqrt ( SizeType val_ ) noexcept {
+        assert ( val_ > 0 );
+        return static_cast<SizeType> ( std::sqrt ( static_cast<double> ( val_ ) ) );
+    }

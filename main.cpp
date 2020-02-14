@@ -151,6 +151,11 @@ inline sax::uniform_int_distribution<std::size_t> dis_idx{ 0, size - 1 };
 
 int main ( ) {
 
+    //  for ( int64_t i = 0; i < 128; ++i )
+    //     std::cout << std::setw ( 4 ) << i << ' ' << std::setw ( 2 ) << sax::isqrt_4 ( i ) << ' ' << sax::isqrt_5 ( i ) << nl;
+
+    // exit ( 0 );
+
     auto algo = test_algorithm ( );
 
     auto speed_0 = test_speed_0 ( );

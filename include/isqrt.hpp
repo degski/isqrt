@@ -24,6 +24,7 @@
 #pragma once
 
 #include <cassert>
+#include <cmath>
 #include <cstddef>
 #include <cstdint>
 
@@ -367,9 +368,15 @@ inline constexpr uint8_t debruijn32[ 32 ] = { 15, 0,  11, 0, 14, 11, 9, 1, 14, 1
 } // namespace detail
 
 template<typename SizeType>
-[[nodiscard]] inline constexpr SizeType isqrt_5 ( SizeType const val_ ) NOEXCEPT {
+[[nodiscard]] inline constexpr SizeType isqrt_6 ( SizeType const val_ ) NOEXCEPT {
     assert ( val_ > 0 );
     return static_cast<SizeType> ( detail::isqrt_impl_5 ( static_cast<typename std::make_unsigned<SizeType>::type> ( val_ ) ) );
+}
+
+template<typename SizeType>
+[[nodiscard]] inline constexpr SizeType isqrt_5 ( SizeType const val_ ) NOEXCEPT {
+    assert ( val_ > 0 );
+    return static_cast<SizeType> ( std::sqrt ( static_cast<double> ( val_ ) ) );
 }
 
 } // namespace sax
